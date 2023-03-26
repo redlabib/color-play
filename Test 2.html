@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Color Play</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 20px;
+      }
+      .box {
+        background-color: #eee;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+      .red {
+        color: red;
+      }
+      .green {
+        color: green;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Color Play</h1>
+    <p>Write down any color and it will pop up below!</p>
+
+    <form>
+      <label for="boxColor">Color:</label>
+      <input type="text" id="boxColor" name="boxColor">
+      <button id="addBoxButton">Add Box</button>
+    </form>
+
+    <div id="boxContainer"></div>
+
+    <script>
+      const form = document.querySelector('form');
+      const colorInput = document.getElementById('boxColor');
+      const addButton = document.getElementById('addBoxButton');
+      const boxContainer = document.getElementById('boxContainer');
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const color = colorInput.value;
+        const box = document.createElement('div');
+        box.classList.add('box');
+        box.style.backgroundColor = color;
+        boxContainer.appendChild(box);
+        colorInput.value = '';
+      });
+
+      boxContainer.addEventListener('click', (event) => {
+        if (event.target.classList.contains('box')) {
+          event.target.classList.toggle('red');
+          event.target.classList.toggle('green');
+        }
+      });
+    </script>
+  </body>
+</html>
